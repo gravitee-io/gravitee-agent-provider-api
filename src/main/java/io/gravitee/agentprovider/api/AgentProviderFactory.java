@@ -30,14 +30,9 @@ public interface AgentProviderFactory {
    * <p>The configuration is handed over as a raw JSON string and deserialized by the plugin itself, so the host never
    * has to load configuration classes coming from the plugin class loader.
    *
-   * <p>The context carries the host services the provider may rely on, such as the resolver of credentials the
-   * configuration references by id. It is scoped by the host (see {@link AgentProviderContext}): a plugin caching the
-   * providers it creates must key them on the context as well as on the configuration.
-   *
    * @param configuration the provider configuration as JSON, matching the plugin's configuration schema.
-   * @param context the host services available to the provider.
    * @return the provider.
    * @throws AgentProviderException if the configuration is missing or invalid.
    */
-  AgentProviderApi create(String configuration, AgentProviderContext context);
+  AgentProviderApi create(String configuration);
 }
