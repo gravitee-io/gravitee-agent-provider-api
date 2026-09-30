@@ -19,7 +19,7 @@ package io.gravitee.agentprovider.api;
  * Marker interface for the configuration class of an agent provider plugin.
  *
  * <p>The host never instantiates it: the configuration reaches the plugin as a JSON string through
- * {@link AgentProviderFactory#create(String, AgentProviderContext)}. Implementing this interface only lets the plugin
+ * {@link AgentProviderFactory#create(String)}. Implementing this interface only lets the plugin
  * loader identify the configuration class of a plugin.
  *
  * @author GraviteeSource Team
