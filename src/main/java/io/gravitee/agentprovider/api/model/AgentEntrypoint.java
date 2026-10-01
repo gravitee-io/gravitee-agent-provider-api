@@ -15,12 +15,19 @@
  */
 package io.gravitee.agentprovider.api.model;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * @author GraviteeSource Team
  */
-public record AgentEntrypoint(Protocol protocol, String url) {
+public record AgentEntrypoint(
+  Protocol protocol,
+  @Nullable String name,
+  @Nullable String url
+) {
   public enum Protocol {
     A2A,
+    CUSTOM,
     RESPONSES,
   }
 }
