@@ -1,3 +1,10 @@
+# [1.0.0-alpha.3](https://github.com/gravitee-io/gravitee-agent-provider-api/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2026-10-01)
+
+
+### Features
+
+* enrich agent snapshot and entrypoint model ([cb8757f](https://github.com/gravitee-io/gravitee-agent-provider-api/commit/cb8757f3dbf2af44779069d41f9e727d9a2c567f))
+
 # [1.0.0-alpha.2](https://github.com/gravitee-io/gravitee-agent-provider-api/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2026-09-30)
 
 
