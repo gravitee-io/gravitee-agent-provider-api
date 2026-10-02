@@ -31,7 +31,7 @@
     <groupId>io.gravitee.agentprovider</groupId>
     <artifactId>gravitee-agent-provider-api</artifactId>
     <name>Gravitee.io - Agent Provider - API</name>
-    <version>1.0.0-alpha.3</version>
+    <version>1.0.0-alpha.4</version>
 
     <properties>
         <jspecify.version>1.0.1</jspecify.version>

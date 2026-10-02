@@ -1,3 +1,10 @@
+# [1.0.0-alpha.4](https://github.com/gravitee-io/gravitee-agent-provider-api/compare/1.0.0-alpha.3...1.0.0-alpha.4) (2026-10-02)
+
+
+### Features
+
+* add optional start/stop lifecycle operations ([954620f](https://github.com/gravitee-io/gravitee-agent-provider-api/commit/954620f53304da9f7b0c36516c96882fab1e7b7c))
+
 # [1.0.0-alpha.3](https://github.com/gravitee-io/gravitee-agent-provider-api/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2026-10-01)
 
 
