@@ -6,7 +6,7 @@ Contract between Gravitee and the `agent-provider` plugins: the plugins that let
 
 | Type                         | Role                                                                                 |
 |------------------------------|--------------------------------------------------------------------------------------|
-| `AgentProviderFactory`       | Entry point of a plugin. Creates an `AgentProviderApi` from a JSON configuration.    |
+| `AgentProviderFactory`       | Entry point of a plugin. Abstract class: caches one `AgentProviderApi` per JSON configuration in the node's cache, and closes it once idle. The plugin implements `instantiateProvider(configuration)`; its provider implements `AutoCloseable` to release its resources. |
 | `AgentProviderApi`           | `test()`, `discover(cursor, pageSize)`, `fetch(ids)`, and optional `start(id)` / `stop(id)`. |
 | `AgentProviderConfiguration` | Marker of the configuration class of a plugin.                                       |
 
