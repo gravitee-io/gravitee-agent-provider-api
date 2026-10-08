@@ -6,13 +6,14 @@ Guidance for AI coding agents working on `gravitee-agent-provider-api`.
 
 Java library defining the contract between Gravitee and the `agent-provider` plugins (plugins that discover AI agents hosted on external platforms: Bedrock, Vertex AI, LangGraph, ...).
 
-- `AgentProviderFactory`: plugin entry point, creates an `AgentProviderApi` from a JSON configuration.
+- `AgentProviderFactory`: plugin entry point, abstract class. Its final `create(json)` caches one provider per configuration in the node's local cache and closes it once expired and idle. Plugins only implement `instantiateProvider`; their provider implements `AutoCloseable` (e.g. closes its HTTP client).
 - `AgentProviderApi`: `test()`, `discover(cursor, pageSize)`, `fetch(ids)`, optional `start(id)` / `stop(id)`.
 - `model/`: records and enums exchanged with the host (`AgentSnapshot`, `AgentRef`, `Capability`, ...).
 
 ## Build
 
 - Java 21 (see `.sdkmanrc`), Maven, parent `io.gravitee:gravitee-parent`.
+- Dependencies: `jspecify`, and `gravitee-node-api`, `gravitee-node-logging` and `slf4j-api` in `provided` scope only. Loggers come from `NodeLoggerFactory`, never slf4j's `LoggerFactory` (enforced by the archrules plugin). The standalone node cache is a test dependency.
 - Build and verify: `mvn clean install`.
 - Formatting is enforced by `prettier-maven-plugin` (check fails the build). Fix with `mvn prettier:write`.
 - Every source file needs the Apache 2.0 license header (copy it from an existing file).
