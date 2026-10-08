@@ -55,8 +55,10 @@ public interface AgentProviderApi {
   /**
    * Fetch the full description of the given agents.
    *
-   * @param ids the identifiers of the agents to fetch (as returned by {@link #discover(String, int)}).
+   * @param ids the identifiers of the agents to fetch (as returned by {@link #discover(String, int)}). Must not be
+   *     {@code null} nor empty.
    * @return the snapshots of the requested agents.
+   * @throws IllegalArgumentException if {@code ids} is {@code null} or empty.
    * @throws AgentProviderException if the provider cannot be reached or an id is unknown.
    */
   List<AgentSnapshot> fetch(String... ids);
