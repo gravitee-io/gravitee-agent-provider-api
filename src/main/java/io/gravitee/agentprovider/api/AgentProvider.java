@@ -31,7 +31,7 @@ import org.jspecify.annotations.Nullable;
  *
  * @author GraviteeSource Team
  */
-public interface AgentProviderApi {
+public interface AgentProvider {
   /**
    * Check the connectivity with the provider (credentials, network, ...).
    *
