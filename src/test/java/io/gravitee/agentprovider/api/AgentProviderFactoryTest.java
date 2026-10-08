@@ -167,7 +167,7 @@ class AgentProviderFactoryTest {
         new StandaloneCacheManager(),
         IDLE_TIMEOUT
       );
-      AgentProviderApi provider = factory.create(CONFIGURATION);
+      AgentProvider provider = factory.create(CONFIGURATION);
 
       for (int i = 0; i < 5; i++) {
         sleep(IDLE_TIMEOUT.dividedBy(2));
@@ -182,10 +182,10 @@ class AgentProviderFactoryTest {
         new StandaloneCacheManager(),
         IDLE_TIMEOUT
       );
-      AgentProviderApi expired = factory.create(CONFIGURATION);
+      AgentProvider expired = factory.create(CONFIGURATION);
 
       sleep(IDLE_TIMEOUT.multipliedBy(2));
-      AgentProviderApi replacement = factory.create(CONFIGURATION);
+      AgentProvider replacement = factory.create(CONFIGURATION);
 
       assertThat(replacement).isNotSameAs(expired);
       await()
@@ -205,7 +205,7 @@ class AgentProviderFactoryTest {
         new StandaloneCacheManager(),
         IDLE_TIMEOUT
       );
-      AgentProviderApi expired = factory.create(CONFIGURATION);
+      AgentProvider expired = factory.create(CONFIGURATION);
       FakeProvider delegate = factory.created.getFirst();
       delegate.release = new CountDownLatch(1);
       CompletableFuture<Probe> running = CompletableFuture.supplyAsync(
@@ -264,7 +264,7 @@ class AgentProviderFactoryTest {
     }
   }
 
-  private static class FakeProvider implements AgentProviderApi, AutoCloseable {
+  private static class FakeProvider implements AgentProvider, AutoCloseable {
 
     private final String configuration;
     private final AtomicInteger tests = new AtomicInteger();
