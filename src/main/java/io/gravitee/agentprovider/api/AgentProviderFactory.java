@@ -30,7 +30,7 @@ import java.util.Objects;
 import org.jspecify.annotations.Nullable;
 
 /**
- * Entry point of an agent provider plugin: creates the {@link AgentProviderApi} bound to a given configuration.
+ * Entry point of an agent provider plugin: creates the {@link AgentProvider} bound to a given configuration.
  *
  * <p>The host creates the implementation as a bean of a Spring context dedicated to the plugin, whose parent is the host
  * context: it can inject host beans (such as Vert.x), and the plugin can declare its own {@code @Configuration} classes.
@@ -58,7 +58,7 @@ import org.jspecify.annotations.Nullable;
  * @author GraviteeSource Team
  */
 public abstract class AgentProviderFactory<
-  P extends AgentProviderApi & AutoCloseable
+  P extends AgentProvider & AutoCloseable
 >
   implements AutoCloseable {
 
@@ -105,7 +105,7 @@ public abstract class AgentProviderFactory<
    * @throws AgentProviderException if the configuration is missing or invalid.
    * @throws IllegalStateException if the factory has been closed.
    */
-  public final AgentProviderApi create(@Nullable String configuration) {
+  public final AgentProvider create(@Nullable String configuration) {
     if (configuration == null || configuration.isBlank()) {
       throw new AgentProviderException(
         "Unable to create the agent provider: configuration is null or empty"

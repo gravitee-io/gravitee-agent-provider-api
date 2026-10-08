@@ -32,8 +32,8 @@ import org.slf4j.Logger;
  * @param <P> the type of the provider of the plugin
  * @author GraviteeSource Team
  */
-final class CachedAgentProvider<P extends AgentProviderApi & AutoCloseable>
-  implements AgentProviderApi {
+final class CachedAgentProvider<P extends AgentProvider & AutoCloseable>
+  implements AgentProvider {
 
   private static final Logger LOGGER = NodeLoggerFactory.getLogger(
     CachedAgentProvider.class
