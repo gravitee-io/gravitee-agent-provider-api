@@ -15,11 +15,12 @@
  */
 package io.gravitee.agentprovider.api;
 
-import io.gravitee.agentprovider.api.model.AgentRef;
 import io.gravitee.agentprovider.api.model.AgentSnapshot;
 import io.gravitee.agentprovider.api.model.Capability;
+import io.gravitee.agentprovider.api.model.DiscoveryPage;
 import io.gravitee.agentprovider.api.model.Probe;
 import java.util.List;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Contract implemented by an agent provider to expose the AI agents hosted by an external provider
@@ -39,17 +40,22 @@ public interface AgentProviderApi {
   Probe test();
 
   /**
-   * List the agents available on the provider.
+   * List the agents available on the provider, one page at a time.
    *
-   * @return references (id and name) of the discovered agents.
-   * @throws AgentProviderException if the provider cannot be reached.
+   * <p>The first page is requested with a {@code null} cursor. The following pages are requested with the
+   * {@link DiscoveryPage#next()} cursor of the previous page, until it is {@code null}.
+   *
+   * @param cursor the cursor returned by the previous page, or {@code null} to get the first page.
+   * @param pageSize the maximum number of agents to return. The provider may return fewer.
+   * @return a page of references to the discovered agents.
+   * @throws AgentProviderException if the provider cannot be reached or the cursor is invalid.
    */
-  List<AgentRef> discover();
+  DiscoveryPage discover(@Nullable String cursor, int pageSize);
 
   /**
    * Fetch the full description of the given agents.
    *
-   * @param ids the identifiers of the agents to fetch (as returned by {@link #discover()}).
+   * @param ids the identifiers of the agents to fetch (as returned by {@link #discover(String, int)}).
    * @return the snapshots of the requested agents.
    * @throws AgentProviderException if the provider cannot be reached or an id is unknown.
    */
@@ -61,7 +67,7 @@ public interface AgentProviderApi {
    * <p>Only called when the snapshot of the agent advertises {@link Capability#START}. Providers that do not support it
    * keep the default implementation.
    *
-   * @param id the identifier of the agent to start (as returned by {@link #discover()}).
+   * @param id the identifier of the agent to start (as returned by {@link #discover(String, int)}).
    * @throws UnsupportedOperationException if the provider does not support starting agents.
    * @throws AgentProviderException if the provider cannot be reached or the id is unknown.
    */
@@ -77,7 +83,7 @@ public interface AgentProviderApi {
    * <p>Only called when the snapshot of the agent advertises {@link Capability#STOP}. Providers that do not support it
    * keep the default implementation.
    *
-   * @param id the identifier of the agent to stop (as returned by {@link #discover()}).
+   * @param id the identifier of the agent to stop (as returned by {@link #discover(String, int)}).
    * @throws UnsupportedOperationException if the provider does not support stopping agents.
    * @throws AgentProviderException if the provider cannot be reached or the id is unknown.
    */
