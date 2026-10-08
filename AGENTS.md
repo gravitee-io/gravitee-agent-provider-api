@@ -7,7 +7,7 @@ Guidance for AI coding agents working on `gravitee-agent-provider-api`.
 Java library defining the contract between Gravitee and the `agent-provider` plugins (plugins that discover AI agents hosted on external platforms: Bedrock, Vertex AI, LangGraph, ...).
 
 - `AgentProviderFactory`: plugin entry point, creates an `AgentProviderApi` from a JSON configuration.
-- `AgentProviderApi`: `test()`, `discover()`, `fetch(ids)`, optional `start(id)` / `stop(id)`.
+- `AgentProviderApi`: `test()`, `discover(cursor, pageSize)`, `fetch(ids)`, optional `start(id)` / `stop(id)`.
 - `model/`: records and enums exchanged with the host (`AgentSnapshot`, `AgentRef`, `Capability`, ...).
 
 ## Build
