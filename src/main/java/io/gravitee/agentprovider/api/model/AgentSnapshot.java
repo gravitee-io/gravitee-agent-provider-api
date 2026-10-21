@@ -32,7 +32,7 @@ import org.jspecify.annotations.Nullable;
  * @param instructions The instructions (system prompt) given to the agent, if exposed by the provider
  * @param capabilities The lifecycle operations the provider supports for this agent (e.g. start, stop). Never {@code null}, empty if unknown
  * @param tools The tools available to the agent. Never {@code null}, empty if none
- * @param model The model used by the agent, if exposed by the provider
+ * @param models The models used by the agent, if exposed by the provider. Never {@code null}, empty if none
  * @param entrypoints The entrypoints through which the agent can be invoked. Never {@code null}, empty if none
  * @param a2aCard The raw A2A agent card (JSON) if the agent exposes one
  * @param metadata Additional provider-specific information about the agent. Never {@code null}, empty if none
@@ -49,7 +49,7 @@ public record AgentSnapshot(
   @Nullable String instructions,
   List<Capability> capabilities,
   List<AgentTool> tools,
-  @Nullable AgentModel model,
+  List<AgentModel> models,
   List<AgentEntrypoint> entrypoints,
   @Nullable String a2aCard,
   Map<String, String> metadata
@@ -57,6 +57,7 @@ public record AgentSnapshot(
   public AgentSnapshot {
     state = state == null ? AgentState.UNKNOWN : state;
     tools = tools == null ? List.of() : tools;
+    models = models == null ? List.of() : models;
     entrypoints = entrypoints == null ? List.of() : entrypoints;
     capabilities = capabilities == null ? List.of() : capabilities;
     metadata = metadata == null ? Map.of() : metadata;
