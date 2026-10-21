@@ -1,3 +1,10 @@
+# [1.0.0-alpha.6](https://github.com/gravitee-io/gravitee-agent-provider-api/compare/1.0.0-alpha.5...1.0.0-alpha.6) (2026-10-21)
+
+
+### Features
+
+* agent snapshot can have a list of models ([e2b75b0](https://github.com/gravitee-io/gravitee-agent-provider-api/commit/e2b75b054cf014682e1cc6ef14f931b90f0f10f5))
+
 # [1.0.0-alpha.5](https://github.com/gravitee-io/gravitee-agent-provider-api/compare/1.0.0-alpha.4...1.0.0-alpha.5) (2026-10-21)
 
 
