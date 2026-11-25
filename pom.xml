@@ -36,7 +36,7 @@
     <properties>
         <jspecify.version>1.0.1</jspecify.version>
         <!-- Version shipped by the Management API -->
-        <gravitee-node.version>9.21.0</gravitee-node.version>
+        <gravitee-node.version>9.22.2</gravitee-node.version>
     </properties>
 
     <dependencyManagement>
